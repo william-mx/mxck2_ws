@@ -1,0 +1,54 @@
+# === Python ===
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pdb
+*.egg
+*.egg-info/
+*.env
+.env
+.venv/
+venv/
+ENV/
+env/
+*.log
+
+# === ROS / colcon ===
+build/
+install/
+log/
+.colcon/
+.colcon_install_layout
+*.launch.pyc
+
+# === ROS workspace & overlays ===
+*.db
+*.mcap
+*.bag
+*.bag.active
+*.bag.db3
+*.orig
+
+# === VSCode ===
+.vscode/
+
+# === JetBrains IDEs ===
+.idea/
+
+# === System ===
+.DS_Store
+Thumbs.db
+
+# === CMake / Catkin / Colcon ===
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+catkin_generated/
+ament_cmake_environment_hooks/
+
+# === Misc ===
+*.swp
+*.swo
+*.bak
+*.tmp
