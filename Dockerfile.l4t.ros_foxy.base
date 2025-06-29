@@ -1,0 +1,87 @@
+# Use the Jetson/JetPack base image with Ultralytics
+FROM ultralytics/ultralytics:latest-jetson-jetpack5
+
+###############################################################################
+# Fix for setuptools deprecation warning
+###############################################################################
+
+# Install a specific version of setuptools to avoid deprecation warnings
+# https://answers.ros.org/question/396439/setuptoolsdeprecationwarning-setuppy-install-is-deprecated-use-build-and-pip-and-other-standards-based-tools/
+RUN python3 -m pip install setuptools==58.2.0
+
+###############################################################################
+# Base Environment & ROS Foxy Setup
+###############################################################################
+
+# Set ROS distribution and locale environment variables
+ENV ROS_DISTRO=foxy \
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    DEBIAN_FRONTEND=noninteractive
+
+
+# Install locales and other prerequisites needed for ROS installation
+RUN apt-get update && apt-get install -y \
+    locales \
+    curl \
+    gnupg2 \
+    lsb-release \
+    && rm -rf /var/lib/apt/lists/*
+
+# Generate the en_US.UTF-8 locale
+RUN locale-gen en_US.UTF-8
+
+# Add the ROS 2 repository key and repository for foxy (arm64)
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key | \
+    gpg --dearmor -o /usr/share/keyrings/ros-archive-keyring.gpg && \
+    echo "deb [arch=arm64 signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://repo.ros2.org/ubuntu/main $(lsb_release -cs) main" \
+    > /etc/apt/sources.list.d/ros2-latest.list
+
+# Install ROS Foxy desktop and common build tools
+RUN apt-get update && apt-get install -y \
+    ros-foxy-ros-base \
+    python3-colcon-common-extensions \
+    python3-rosdep \
+    && rm -rf /var/lib/apt/lists/*
+
+# Initialize rosdep (required for building ROS packages)
+RUN rosdep init && rosdep update
+
+###############################################################################
+# Combined ROS 2 Message Packages Setup (ackermann_msgs + vision_msgs)
+###############################################################################
+
+# NOTE: Although we use ROS Foxy, we fetch `vision_msgs` from the humble branch
+# to access updated message definitions needed for our application.
+
+RUN apt update && apt install --yes ros-foxy-udp-msgs \
+    && mkdir -p /msgs_ws/src \
+    && cd /msgs_ws/src \
+    && git clone -b ros2 https://github.com/ros-drivers/ackermann_msgs.git \
+    && git clone -b humble https://github.com/ros-perception/vision_msgs.git \
+    && rm -rf vision_msgs/vision_msgs_rviz_plugins \
+    && cd /msgs_ws \
+    && . /opt/ros/foxy/setup.sh \
+    && rosdep update && rosdep install --from-paths src --ignore-src -r -y \
+    && colcon build
+
+
+RUN apt-get install -y \
+    ros-$ROS_DISTRO-rosbridge-suite \
+    ros-$ROS_DISTRO-joy \
+    ros-$ROS_DISTRO-robot-state-publisher \
+    ros-$ROS_DISTRO-joint-state-publisher \
+    ros-$ROS_DISTRO-sensor-msgs-py \
+    ros-$ROS_DISTRO-rosbag2-storage-mcap
+
+# Reduce NumPy version to avoid conflicts with PyCUDA and TensorRT
+RUN python3 -m pip install \
+    pycuda \
+    numpy==1.23 \
+    transforms3d
+
+
+# Link trtexec globally for convenience
+RUN ln -s /usr/src/tensorrt/bin/trtexec /usr/local/bin/trtexec
+
+
