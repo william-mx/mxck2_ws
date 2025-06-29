@@ -16,3 +16,6 @@ COPY ./ros_entrypoint.sh /ros_entrypoint.sh
 RUN echo 'source /ros_entrypoint.sh' >> ~/.bashrc
 
 COPY ./.bash_aliases /root/.bash_aliases
+
+# Mark all Git repos as safe
+RUN git config --global --add safe.directory '*'

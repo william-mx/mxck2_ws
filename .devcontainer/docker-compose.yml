@@ -17,9 +17,9 @@ services:
     container_name: mxck2_development
     command: bash
 
-  pdc_visualization:
-    <<: *common-setup
-    container_name: mxck2_pdc
-    command: bash -i -c "visualize_pdc"
+  # pdc_visualization:
+  #   <<: *common-setup
+  #   container_name: mxck2_pdc
+  #   command: bash -i -c "visualize_pdc"
 
     
