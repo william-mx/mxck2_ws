@@ -1,4 +1,4 @@
-FROM mxwilliam/mxck:core-foxy-pytorch-l4t-35.4
+FROM mxwilliam/mxck:foxy-pytorch-l4t-35.4-core
 
 # Upgrade pip and install Python packages
 # RUN python3 -m pip install \
