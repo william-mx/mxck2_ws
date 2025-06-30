@@ -33,6 +33,7 @@ class AckermannToVesc(Node):
                 ('joy_auto_value', rclpy.Parameter.Type.INTEGER),
                 ('joy_manu_value', rclpy.Parameter.Type.INTEGER),
                 ('joy_mode_button', rclpy.Parameter.Type.INTEGER),
+                ('joy_auto_button', rclpy.Parameter.Type.INTEGER),
                 ('invert_steering', rclpy.Parameter.Type.BOOL)
             ]
         )
@@ -73,7 +74,7 @@ class AckermannToVesc(Node):
         # Driving command subscribers, initially not active
         self.rc_sub = None
         self.ad_sub = None
-        
+
         # Joystick subscriber for mode updates
         if self.control_type == 'rc':
             self.joy_sub = self.create_subscription(Joy, '/rc/joy', self.update_mode, self.qos_profile)
@@ -127,8 +128,14 @@ class AckermannToVesc(Node):
     
     def update_mode(self, msg):
         """Update the driving mode based on joystick input."""
-        new_mode = msg.buttons[self.mode_btn]
 
+        if self.control_type == 'rc':
+            new_mode = msg.buttons[self.mode_btn]
+        elif self.control_type == 'joy':
+            row = msg.buttons[self.mode_btn]
+            col = msg.buttons[self.auto_btn]
+            new_mode = self.mode_matrix[row][col]
+            
         if new_mode != self.mode:  # mode change
             self.brake()  # emergency brake
             
@@ -203,6 +210,11 @@ class AckermannToVesc(Node):
             self.auto_val = self.get_parameter('joy_auto_value').value
             self.manu_val = self.get_parameter('joy_manu_value').value
             self.mode_btn = self.get_parameter('joy_mode_button').value
+            self.auto_btn = self.get_parameter('joy_auto_button').value
+
+            # 0,0 → 0 (deadman); 0,1 → 2 (autonomous); 1,0 → 1 (manual); 1,1 → 1 (manual)
+            self.mode_matrix = [[0, 2],
+                                [1, 1]]
 
         invert_steering = self.get_parameter("invert_steering").get_parameter_value().bool_value
         self.steering_sign = -1 if invert_steering else 1
