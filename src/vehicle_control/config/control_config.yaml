@@ -1,13 +1,17 @@
 /**:  # This applies to all nodes
   ros__parameters:
+
+    control_type: "rc" # or "rc" or "joy"
+
     # Defines the index position where the speed, steering, and mode values are stored in the JOY message
     rc_speed_axis: 1        # Index for speed axis
     rc_steering_axis: 0     # Index for steering axis
     rc_mode_button: 0       # Index for mode button
 
-    joy_speed_axis: 1
+    joy_speed_axis: 4
     joy_steering_axis: 3
     joy_mode_button: 4 
+    joy_auto_button: 5 
 
     # Minimum ERPM Configuration:
     # The minimum ERPM value is specified in the VESC motor configuration, under:
@@ -44,8 +48,6 @@ rc_to_joy:
 joy_to_ackermann:
   ros__parameters:
     
-    control_type: "rc" # or "joy"
-
     steering_angle_max: 0.44  # Maximum steering angle in radians (+/-)
 
     max_backward_speed: -2.0  # Minimum speed, represents maximum reverse speed in m/s
