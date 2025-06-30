@@ -75,9 +75,9 @@ class JoyControl(Node):
         self.ackermann_pub = self.create_publisher(AckermannDriveStamped, '/rc/ackermann_cmd', qos_profile)
         
         # subscribe to joy
-        self.joy_sub = self.create_subscription(Joy, '/rc/joy', self.callback, qos_profile)
-            
-        self.joy_sub  # prevent unused variable warning             
+        topic_name = '/rc/joy' if self.control_type == 'rc' else '/joy'
+        self.joy_sub = self.create_subscription(Joy, topic_name, self.callback, qos_profile)
+                    
          
     def callback(self, msg):
     
