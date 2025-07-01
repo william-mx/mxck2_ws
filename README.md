@@ -1,4 +1,4 @@
-# MXcarkit ROS2 Fox Development Workspace
+# MXcarkit ROS2 Foxy Development Workspace
 
 Clone this repository.
 ```
