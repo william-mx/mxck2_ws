@@ -34,9 +34,12 @@ TOPIC_WHITELIST = [
 
     # === Custom Topics ===
     "/pdc",
-    "/pose",
+    "/position",
     "/path",
     "/result",
+    "/waypoint",
+    "/detections_2d",
+    "/detections_3d",
     "/waypoint",
 ]
 

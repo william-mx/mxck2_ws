@@ -16,21 +16,3 @@ services:
     <<: *common-setup
     container_name: mxck2_control
     command: bash
-
-  foxglove:
-    <<: *common-setup
-    container_name: mxck2_foxglove
-    ports:
-      - "8765:8765"
-    command: bash -i -c "run_foxglove"
-
-  camera:
-    <<: *common-setup
-    container_name: mxck2_camera
-    command: bash -i -c "run_camera"
-
-  micro:
-    <<: *common-setup
-    container_name: mxck2_micro
-    command: bash -i -c "run_micro"
-    
