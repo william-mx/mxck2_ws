@@ -20,7 +20,7 @@ Build docker image.
 sudo docker build -t mxck2_humble .
 ```
 
-## 0. MXcarkit Components and Wiring Overview
+## 1. MXcarkit Components and Wiring Overview
 
 <img src="images/mxcarkit_components.jpg" title="Flowchart" width="800">
 
@@ -36,7 +36,7 @@ Additionally, the setup includes the **RPLidar** and the **Intel D435i RealSense
 
 This configuration illustrates a comprehensive and integrated approach to robotic vehicle design, leveraging the MXcarkit's modular components for a wide range of applications in robotics and autonomous systems.
 
-## 1. System Software and Firmware Configuration Overview
+## 2. System Software and Firmware Configuration Overview
 
 In the components overview at the top, we identify three critical subsystems: the Jetson, the VESC, and the microcontroller. Each subsystem's corresponding operating software or firmware is denoted in gray at the bottom right.
 
@@ -54,7 +54,7 @@ In the components overview at the top, we identify three critical subsystems: th
   - It's necessary to write the correct VESC firmware on our VESC and set the motor and application configuration appropriately to match our vehicle hardware. 
   - The instructions, firmware, and configurations can be found [here](https://github.com/william-mx/MXcarkit/tree/main/vesc).
 
-## 2. Accessing the MXCarKit: Connection Guide
+## 3. Accessing the MXCarKit: Connection Guide
 
 To communicate with the Carkit, make sure you're on the same network.You can connect to the Jetson via **USB**, **Ethernet**, **Wi-Fi**, or a **hotspot** — each assigns a different IP address.Use the `ifconfig` command on the Jetson to find the correct IP address for your current connection.
 
