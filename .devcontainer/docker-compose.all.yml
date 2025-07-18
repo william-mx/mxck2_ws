@@ -33,4 +33,8 @@ services:
     <<: *common-setup
     container_name: mxck2_micro
     command: bash -i -c "run_micro"
-    
+
+  kickstart:
+    <<: *common-setup
+    container_name: mxck2_kickstart
+    command: bash -i -c "kickstart"
