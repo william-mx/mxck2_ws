@@ -1,0 +1,28 @@
+version: "3.8"
+
+x-common-setup: &common-setup
+  build:
+    context: ..
+    dockerfile: Dockerfile
+  privileged: true
+  network_mode: mxck0021-net
+  volumes:
+    - /home/mxck/development_ws:/mxck2_ws
+    - /dev:/dev
+  stdin_open: true
+
+services:
+  development:
+    <<: *common-setup
+    container_name: mxck2_development
+    command: bash
+
+  pdc_visualization:
+    <<: *common-setup
+    container_name: mxck2_pdc
+    command: bash -i -c "visualize_pdc"
+
+  yolo_vision:
+    <<: *common-setup
+    container_name: mxck2_yolo
+    command: bash -i -c "run_yolo"
