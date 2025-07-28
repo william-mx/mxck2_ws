@@ -9,6 +9,9 @@ alias kickstart='ros2 launch vehicle_control manual_control_launch.py'
 # Start micro-ROS node
 alias run_micro='ros2 launch mxck_run mxck_run_launch.py run_micro:=true'
 
+# Run LiDAR
+alias run_lidar='ros2 launch mxck_run mxck_run_launch.py run_lidar:=true'
+
 # RGB camera only
 alias run_camera='ros2 launch mxck_run realsense_launch.py camera:=true'
 
