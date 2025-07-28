@@ -38,3 +38,8 @@ services:
     <<: *common-setup
     container_name: mxck2_kickstart
     command: bash -i -c "kickstart"
+
+  lidar:
+    <<: *common-setup
+    container_name: mxck2_lidar
+    command: bash -i -c "run_lidar"
