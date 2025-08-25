@@ -1,0 +1,18 @@
+# SSH Config Template for MXcarkit
+# Copy this block into your ~/.ssh/config and replace 'mxck0000'
+# with the correct identifier (e.g. mxck0032, etc.)
+
+Host wifi_mxck0000 usb_mxck0000 hotspot_mxck0000
+  User mxck
+  IdentityFile C:/Users/WilliamEngel/.ssh/mxck0000
+  HostKeyAlias mxck0000_key
+
+# Example per-connection overrides
+Host wifi_mxck0000
+  HostName 192.168.0.101   # change as needed (DHCP on Wi-Fi router)
+
+Host usb_mxck0000
+  HostName 192.168.55.1    # static (USB tether)
+
+Host hotspot_mxck0000
+  HostName 10.42.0.1       # static (hotspot)
