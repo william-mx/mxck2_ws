@@ -66,10 +66,12 @@ This is mainly useful for initial configuration or troubleshooting and is not re
 
 ### SSH Key Setup
 
-It is best practice to configure SSH key-based authentication for secure and convenient access.
-You'll need an SSH key and a configuration file — place them in the correct directory (usually `~/.ssh/`).
+It is best practice to configure SSH key-based authentication for secure and convenient access, which requires an SSH key and a configuration file placed in the correct directory (usually `~/.ssh/`). See the template file: [`mxck_ssh_template`](./ssh_config_template)
+
 
 <img src="images/ssh_connection.png" title="SSH Key Setup" width="800">
+
+
 
 ### Recommended Development Workflow
 
