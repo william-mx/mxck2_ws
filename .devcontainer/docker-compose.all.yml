@@ -5,7 +5,7 @@ x-common-setup: &common-setup
     context: ..
     dockerfile: Dockerfile
   privileged: true
-  network_mode: mxck0021-net
+  network_mode: mxck0020-net
   volumes:
     - /home/mxck/mxck2_ws:/mxck2_ws
     - /dev:/dev
@@ -43,3 +43,9 @@ services:
     <<: *common-setup
     container_name: mxck2_lidar
     command: bash -i -c "run_lidar"
+
+  imu:
+    <<: *common-setup
+    container_name: mxck2_imu
+    command: bash -i -c "run_imu"
+    
