@@ -1,0 +1,20 @@
+version: "3.8"
+
+x-common-setup: &common-setup
+  build:
+    context: ..
+    dockerfile: Dockerfile
+  privileged: true
+  network_mode: mxck0020-net
+  volumes:
+    - /home/mxck/mxck2_ws:/mxck2_ws
+    - /dev:/dev
+  stdin_open: true
+
+services:
+  teleop:
+    <<: *common-setup
+    container_name: mxck2_teleop
+    ports:
+      - "8765:8765"
+    command: bash -i -c "run_camera & run_foxglove & kickstart"
