@@ -46,4 +46,7 @@ RUN apt update && apt install -y \
     ros-$ROS_DISTRO-joint-state-publisher \
     ros-$ROS_DISTRO-sensor-msgs-py \
     ros-$ROS_DISTRO-rosbag2-storage-mcap \
-    ros-$ROS_DISTRO-rosbag2-py
+    ros-$ROS_DISTRO-rosbag2-py \
+    ros-$ROS_DISTRO-image-view \
+    ros-$ROS_DISTRO-image-transport \
+ && rm -rf /var/lib/apt/lists/*
