@@ -10,9 +10,10 @@ from launch.substitutions import LaunchConfiguration, PathJoinSubstitution
 
 # List of topics to record
 topics = [
+    "/camera/camera/color/image_raw",
     "/rc/ackermann_cmd",
-    "/camera/imu",
-    "/imu"
+    "/tf_static",
+    "/imu",
 ]
 
 # Short lists of adjectives and animals for naming
