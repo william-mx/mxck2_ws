@@ -273,3 +273,43 @@ ls -l
 stat -c "%a %n" *
 ```
 
+### 10. USB Device Management
+
+Find USB Device
+```bash
+lsblk | grep sd
+```
+
+Example:
+
+```bash
+sda            8:0    1  28.7G  0 disk
+└─sda1         8:1    1  28.7G  0 part
+```
+
+* `sda` = USB device
+* `sda1` = USB partition, use this
+
+Mount:
+
+```bash
+sudo mkdir -p /mnt/usb
+sudo mount /dev/sda1 /mnt/usb
+```
+
+Copy:
+
+```bash
+cp file.txt /mnt/usb/
+cp -r folder /mnt/usb/
+```
+
+Unmount:
+
+```bash
+sudo umount /mnt/usb
+```
+
+---
+
+
