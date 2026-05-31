@@ -13,3 +13,6 @@
 [submodule "src/odometry"]
 	path = src/odometry
 	url = https://github.com/william-mx/odometry.git
+[submodule "src/smart_parking"]
+	path = src/smart_parking
+	url = https://github.com/wiengel-hm/smart_parking.git
