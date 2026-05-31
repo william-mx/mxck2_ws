@@ -9,4 +9,7 @@
 	url = https://github.com/william-mx/yolo_vision.git
 [submodule "src/mxck_interfaces"]
 	path = src/mxck_interfaces
-	url = git@github.com:william-mx/mxck_interfaces.git
+	url = https://github.com/william-mx/mxck_interfaces.git
+[submodule "src/odometry"]
+	path = src/odometry
+	url = https://github.com/william-mx/odometry.git
