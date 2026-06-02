@@ -21,3 +21,9 @@
 [submodule "src/vision_speed_guard"]
 	path = src/vision_speed_guard
 	url = https://github.com/william-mx/vision_speed_guard.git
+[submodule "pilotnet"]
+	path = pilotnet
+	url = https://github.com/william-mx/pilotnet.git
+[submodule "src/pilotnet"]
+	path = src/pilotnet
+	url = https://github.com/william-mx/pilotnet.git
