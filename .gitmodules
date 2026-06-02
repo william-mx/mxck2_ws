@@ -4,12 +4,14 @@
 [submodule "src/drive_manager"]
 	path = src/drive_manager
 	url = https://github.com/william-mx/drive_manager.git
+	branch = main
 [submodule "src/yolo_vision"]
 	path = src/yolo_vision
 	url = https://github.com/william-mx/yolo_vision.git
 [submodule "src/mxck_interfaces"]
 	path = src/mxck_interfaces
 	url = https://github.com/william-mx/mxck_interfaces.git
+	branch = main
 [submodule "src/odometry"]
 	path = src/odometry
 	url = https://github.com/william-mx/odometry.git
