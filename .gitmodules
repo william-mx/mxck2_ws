@@ -16,3 +16,6 @@
 [submodule "src/smart_parking"]
 	path = src/smart_parking
 	url = https://github.com/wiengel-hm/smart_parking.git
+[submodule "src/vision_speed_guard"]
+	path = src/vision_speed_guard
+	url = https://github.com/william-mx/vision_speed_guard.git
