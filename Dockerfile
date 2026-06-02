@@ -10,9 +10,12 @@ FROM mxwilliam/mxck:foxy-pytorch-l4t-35.4-core
 # ...
 
 
-RUN python3 -m pip install --force-reinstall --no-cache-dir \
-    git+https://github.com/william-mx/ros2_numpy.git
+# Pin NumPy for TensorRT compatibility
+RUN python3 -m pip install --no-cache-dir --force-reinstall \
+    numpy==1.23.5
 
+RUN python3 -m pip install --no-cache-dir \
+    git+https://github.com/william-mx/ros2_pydata.git
 
 COPY ./ros_entrypoint.sh /ros_entrypoint.sh
 RUN echo 'source /ros_entrypoint.sh' >> ~/.bashrc
