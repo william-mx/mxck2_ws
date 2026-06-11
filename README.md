@@ -3,6 +3,8 @@
 Clone this repository.
 ```
 git clone --recurse-submodules -b development_ws https://github.com/william-mx/mxck2_ws.git ~/development_ws
+cd ~/development_ws
+git submodule update --remote --merge --recursive
 ```
 
 ## Choosing the Right CUDA Docker on Jetson (L4T)
